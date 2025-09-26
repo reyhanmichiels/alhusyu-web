@@ -22,10 +22,10 @@ const programItems: ProgramItem[] = [
 ];
 
 const ProgramList = ({items}: { items: ProgramItem[] }) => (
-    <ul className="space-y-6">
+    <ul className="space-y-4 md:space-y-6">
         {items.map((item, index) => (
             <li key={index}>
-                <p className="font-extralight text-[28px]" style={{color: COLORS.text}}>
+                <p className="font-extralight text-sm md:text-base lg:text-lg xl:text-[28px] leading-relaxed" style={{color: COLORS.text}}>
                     {item.description}
                 </p>
                 <hr className="border-t border-gray-300 mt-2"/>
@@ -35,7 +35,7 @@ const ProgramList = ({items}: { items: ProgramItem[] }) => (
 );
 
 const ImageGallery = () => (
-    <div className="flex-1 space-y-4 h-full">
+    <div className="flex-1 space-y-4 h-auto lg:h-full">
         <img
             src={PROGRAM_IMAGES[0].src}
             alt={PROGRAM_IMAGES[0].alt}
@@ -50,7 +50,7 @@ const ImageGallery = () => (
             <img
                 src={PROGRAM_IMAGES[2].src}
                 alt={PROGRAM_IMAGES[2].alt}
-                className="w-[300px] h-[240px] rounded-xl"
+                className="w-full max-w-[200px] md:max-w-[250px] lg:w-[300px] h-auto lg:h-[240px] rounded-xl object-cover"
             />
         </div>
     </div>
@@ -58,9 +58,9 @@ const ImageGallery = () => (
 
 export default function ProgramSection() {
     return (
-        <section className="w-full h-screen px-12 py-24 bg-white mx-auto flex flex-col md:flex-row gap-12 items-start">
-            <div className="flex-1 space-y-6 h-full">
-                <h1 className="text-[70px] font-extrabold uppercase ulm-font" style={{color: COLORS.primary}}>
+        <section className="w-full min-h-screen lg:h-screen px-4 md:px-8 lg:px-12 py-12 md:py-18 lg:py-24 bg-white mx-auto flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
+            <div className="flex-1 space-y-4 md:space-y-6 h-auto lg:h-full">
+                <h1 className="text-2xl md:text-4xl lg:text-5xl xl:text-[70px] font-extrabold uppercase ulm-font leading-tight" style={{color: COLORS.primary}}>
                     Program Unggulan Kami
                 </h1>
                 <ProgramList items={programItems}/>

@@ -11,23 +11,23 @@ const COLORS = {
 
 // Styles
 const styles = {
-    section: "h-screen flex flex-col px-12 py-24 bg-white",
-    contentWrapper: "flex-1 flex justify-between items-start gap-8",
+    section: "min-h-screen flex flex-col px-4 md:px-8 lg:px-12 py-12 md:py-24 bg-white",
+    contentWrapper: "flex-1 flex flex-col lg:flex-row justify-between items-start gap-6 lg:gap-8",
     title: cn(
         "ulm-font font-[800]",
-        "text-[94.76px] leading-[100%] tracking-[0%]"
+        "text-3xl md:text-5xl lg:text-7xl xl:text-[94.76px] leading-[100%] tracking-[0%]"
     ),
     description: cn(
         "font-manrope font-[200]",
-        "text-[28px] leading-[41.47px] tracking-[0%]"
+        "text-base md:text-lg lg:text-xl xl:text-[28px] leading-relaxed tracking-[0%]"
     ),
     actionButton: cn(
-        "w-[208px] h-[55.61px] rounded-[43.33px]",
+        "w-full max-w-[208px] h-[55.61px] rounded-[43.33px]",
         "transition-transform hover:scale-105"
     ),
     visualSection: cn(
-        "relative w-full max-w-[1738px] h-[628px]",
-        "mx-auto mt-[64px] mb-[32px] rounded-[30px]",
+        "relative w-full max-w-[1738px] h-48 md:h-80 lg:h-[628px]",
+        "mx-auto mt-8 md:mt-[64px] mb-4 md:mb-[32px] rounded-[30px]",
         "bg-gradient-to-br from-sky-100 to-white shadow-inner"
     ),
 };
@@ -56,7 +56,7 @@ export default function HeroSection() {
         <section className={styles.section}>
             <div className={styles.contentWrapper}>
                 {/* Left content */}
-                <div className="space-y-4">
+                <div className="space-y-4 flex-1 lg:flex-initial">
                     <h1 className={styles.title} style={{color: COLORS.primary}}>
                         {heroContent.title}
                     </h1>
@@ -71,7 +71,7 @@ export default function HeroSection() {
                 </div>
 
                 {/* Right content */}
-                <div className="max-w-md text-sm text-muted-foreground space-y-4">
+                <div className="w-full lg:max-w-md text-sm text-muted-foreground space-y-4">
                     <p
                         className={styles.description}
                         style={{color: COLORS.textSecondary}}
@@ -89,7 +89,7 @@ export default function HeroSection() {
             </div>
 
             {/* Visual section */}
-            <div className="container px-6">
+            <div className="container px-2 md:px-6">
                 <div className={styles.visualSection}/>
             </div>
         </section>

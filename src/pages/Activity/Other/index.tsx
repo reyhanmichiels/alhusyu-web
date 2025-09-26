@@ -66,7 +66,6 @@ export default function Other() {
         }
     ]
 
-
     const ItemCard = ({image, title, summary, date}: {
         image: string,
         title: string,
@@ -74,30 +73,32 @@ export default function Other() {
         date: string
     }) => {
         return (
-            <div className="rounded-2xl bg-white flex flex-col gap-0 justify-between w-[406px] h-[428px]">
+            <div
+                className="rounded-2xl bg-white flex flex-col gap-4 justify-between w-full max-w-[406px] h-auto min-h-[300px] md:h-[428px]">
                 <div className="flex flex-col gap-4 pt-2 px-4">
-                    <div className="font-manrope font-semibold text-black text-[28px]">
+                    <div className="font-manrope font-semibold text-black text-lg md:text-xl lg:text-[28px]">
                         {title}
                     </div>
 
-                    <div className="font-manrope font-semibold text-[#757575] text-[16px]">
+                    <div className="font-manrope font-semibold text-[#757575] text-sm md:text-[16px] leading-relaxed">
                         {summary}
                     </div>
 
-                    <div className="flex justify-between gap-3">
+                    <div className="flex flex-row sm:flex-row sm:justify-between gap-3">
                         <div
-                            className="rounded-full flex border border-black-100 items-center px-4 py-1 text-sm text-[#757575] h-[35px]">
+                            className="rounded-full flex border border-black-100 items-center px-3 md:px-4 py-1 text-xs md:text-sm text-[#757575] h-[35px] w-fit">
                             {date}
                         </div>
                         <Button
-                            className="flex flex-row items-center rounded-full bg-[#567471] hover:bg-[#4a6260] px-4 py-1 font-manrope text-[16px] text-sm text-white h-[35px]">
+                            className="flex flex-row items-center rounded-full bg-[#567471] hover:bg-[#4a6260] px-3 md:px-4 py-1 font-manrope text-xs md:text-[16px] text-white h-[35px] w-fit">
                             <p>Selengkapnya</p>
-                            <ArrowUpRight className="ml-1 h-4 w-4"/>
+                            <ArrowUpRight className="ml-1 h-3 w-3 md:h-4 md:w-4"/>
                         </Button>
                     </div>
                 </div>
 
-                <img src={image} alt="education-landing-page" className="w-[406px] h-[230px]"/>
+                <img src={image} alt="education-landing-page"
+                     className="w-full h-48 md:h-[230px] object-cover rounded-b-2xl"/>
             </div>
         )
     }
@@ -116,9 +117,6 @@ export default function Other() {
                    text-4xl md:text-6xl xl:text-[76px]">
                 <span className="block">Jelajahi Ikhtiar</span>
                 <span className="block">Lainnya</span>
-            </div>
-            <div>
-                {/*    Implement Pagination here using Item Card*/}
             </div>
 
             {/* Grid Items */}

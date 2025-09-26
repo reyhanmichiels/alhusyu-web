@@ -18,55 +18,55 @@ export function Detail() {
         },
     ]
     return (
-        <div className="flex justify-start pl-8 pr-8 gap-8">
+        <div className="flex flex-col lg:flex-row justify-start gap-6 lg:gap-8">
 
-            <div className="flex flex-col gap-8 w-1/2">
-                <h1 className="text-[53px] font-extrabold ulm-font text-[#63817E] w-full">
+            <div className="flex flex-col gap-6 md:gap-8 w-full lg:w-1/2">
+                <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-[53px] font-extrabold ulm-font text-[#63817E] w-full leading-tight">
                     Pencapaian dan <br/>
                     Prestasi Santri
                 </h1>
 
                 <div
-                    className="font-manrope text-[#757575] text-[20px] bg-white rounded-2xl px-8 py-8 flex items-center">
+                    className="font-manrope text-[#757575] text-sm md:text-base lg:text-lg xl:text-[20px] bg-white rounded-2xl px-4 md:px-6 lg:px-8 py-4 md:py-6 lg:py-8 flex items-center leading-relaxed">
                     Kami menghadirkan program pendidikan yang
                     menyeluruh untuk membentuk pribadi yang seimbang
                     antara ilmu dan iman.
                 </div>
 
-                <div className="flex flex-row justify-between w-full">
-                    <img src="/image/button-quran.png" alt="Logo"/>
+                <div className="flex flex-col md:flex-row justify-between w-full gap-4 md:gap-0">
+                    <img src="/image/button-quran.png" alt="Logo" className="h-12 md:h-auto max-h-16 w-auto"/>
 
                     <ButtonDetail/>
                 </div>
             </div>
 
-            <div className="w-1/2">
+            <div className="w-full lg:w-1/2 mt-6 lg:mt-0">
                 {/* max-w lebih besar dari slide untuk bikin efek "peek" slide berikutnya */}
                 <Carousel
-                    className="w-full max-w-[820px] ml-auto relative"
+                    className="w-full max-w-full lg:max-w-[820px] lg:ml-auto relative"
                     opts={{ align: "start", loop: true }}
                 >
                     {/* spacing antar slide */}
-                    <CarouselContent className="-ml-6">
+                    <CarouselContent className="-ml-2 md:-ml-6">
                         {AchievementList.map((item, idx) => (
-                            // Lebar slide = 750px supaya match desain
-                            <CarouselItem key={idx} className="pl-6 basis-[750px]">
+                            // Responsive slide width
+                            <CarouselItem key={idx} className="pl-2 md:pl-6 basis-full md:basis-[600px] lg:basis-[750px]">
                                 <Card className="rounded-3xl border-0 shadow-none bg-white">
-                                    <CardContent className="p-8">
-                                        <div className="grid grid-cols-[1fr_320px] gap-8 items-start">
+                                    <CardContent className="p-4 md:p-6 lg:p-8">
+                                        <div className="flex flex-col md:grid md:grid-cols-[1fr_200px] lg:grid-cols-[1fr_320px] gap-4 md:gap-6 lg:gap-8 items-start">
                                             {/* Kiri: teks */}
-                                            <div className="space-y-6">
-                                                <p className="text-[#568872] font-manrope font-semibold tracking-wide">
+                                            <div className="space-y-3 md:space-y-4 lg:space-y-6">
+                                                <p className="text-[#568872] font-manrope font-semibold tracking-wide text-sm md:text-base">
                                                     {item.date}
                                                 </p>
-                                                <p className="text-[#757575] leading-8 font-manrope">
+                                                <p className="text-[#757575] leading-6 md:leading-8 font-manrope text-sm md:text-base">
                                                     {item.summary}
                                                 </p>
-                                                <h3 className="text-[#63817E] font-extrabold text-2xl leading-snug ulm-font">
+                                                <h3 className="text-[#63817E] font-extrabold text-lg md:text-xl lg:text-2xl leading-snug ulm-font">
                                                     {item.title.toUpperCase()}
                                                 </h3>
                                                 <div>
-                                                    <button className="rounded-full bg-[#567471] text-white px-6 py-3 flex items-center justify-between w-full gap-2">
+                                                    <button className="rounded-full bg-[#567471] text-white px-4 md:px-6 py-2 md:py-3 flex items-center justify-between w-full gap-2 text-sm md:text-base">
                                                         Jelajahi
                                                         <span className="inline-block">→</span>
                                                     </button>
@@ -74,11 +74,11 @@ export function Detail() {
                                             </div>
 
                                             {/* Kanan: gambar */}
-                                            <div className="h-[388px] w-[296px]">
+                                            <div className="h-48 md:h-60 lg:h-[388px] w-full md:w-[200px] lg:w-[296px] flex-shrink-0">
                                                 <img
                                                     src={item.image}
                                                     alt={item.title}
-                                                    className="h-full w-full rounded-2xl object-cover"
+                                                    className="h-full w-full rounded-2xl object-contain"
                                                 />
                                             </div>
                                         </div>
@@ -89,7 +89,7 @@ export function Detail() {
                     </CarouselContent>
 
                     {/* Tombol next di kanan tengah */}
-                    <CarouselNext className="absolute right-[-22px] top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-[#567471] text-white shadow-md hover:bg-[#4b6663]" />
+                    <CarouselNext className="absolute right-[-16px] md:right-[-22px] top-1/2 -translate-y-1/2 h-8 w-8 md:h-12 md:w-12 rounded-full bg-[#567471] text-white shadow-md hover:bg-[#4b6663]" />
                 </Carousel>
             </div>
 
