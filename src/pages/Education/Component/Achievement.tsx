@@ -34,7 +34,7 @@ export function Achievement() {
                 </div>
 
                 <div className="flex flex-col md:flex-row justify-between w-full gap-4 md:gap-0">
-                    <img src="/image/button-quran.png" alt="Logo" className="h-12 md:h-auto max-h-16 w-auto"/>
+                    <img src="/image/button-quran.png" alt="Logo" className="h-16 md:h-auto w-auto object-contain"/>
 
                     <ButtonDetail/>
                 </div>

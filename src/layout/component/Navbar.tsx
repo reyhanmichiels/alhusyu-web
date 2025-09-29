@@ -1,27 +1,19 @@
 import {useEffect, useRef, useState} from "react";
 import {ChevronDown, Menu, X} from "lucide-react";
+import {Link, useLocation} from "react-router";
 
 export default function Navbar() {
     const [eduOpen, setEduOpen] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const eduRef = useRef<HTMLDivElement>(null);
-    const [currentPath, setCurrentPath] = useState("/");
-
-    useEffect(() => setCurrentPath(window.location.pathname), []);
-
-    // close when click outside
-    useEffect(() => {
-        const onDocClick = (e: MouseEvent) => {
-            if (!eduRef.current?.contains(e.target as Node)) setEduOpen(false);
-        };
-        document.addEventListener("mousedown", onDocClick);
-        return () => document.removeEventListener("mousedown", onDocClick);
-    }, []);
+    const location = useLocation();
+    const currentPath = location.pathname;
 
     // Close mobile menu on route change
     useEffect(() => {
         setMobileMenuOpen(false);
-    }, [currentPath]);
+        setEduOpen(false);
+    }, [location.pathname]);
 
     const isActive = (href: string) => (href === "/" ? currentPath === "/" : currentPath.startsWith(href));
 
@@ -44,8 +36,8 @@ export default function Navbar() {
             {/* Desktop navigation */}
             <div className="relative hidden md:block">
                 <nav className="flex rounded-full bg-[#63817E] gap-4 lg:gap-8 px-6 lg:px-10 py-3 text-white text-sm lg:text-xl font-semibold font-manrope">
-                    <a className={`${isActive("/") ? "text-[#FBFED0]" : ""} hover:underline whitespace-nowrap`} href="/">Beranda</a>
-                    <a className={`${isActive("/tentang") ? "text-[#FBFED0]" : ""} hover:underline whitespace-nowrap`} href="/tentang">Tentang</a>
+                    <Link className={`${isActive("/") ? "text-[#FBFED0]" : ""} hover:underline whitespace-nowrap`} to="/">Beranda</Link>
+                    <Link className={`${isActive("/tentang") ? "text-[#FBFED0]" : ""} hover:underline whitespace-nowrap`} to="/tentang">Tentang</Link>
 
                     {/* Dropdown Pendidikan (mega menu) */}
                     <div
@@ -78,32 +70,32 @@ export default function Navbar() {
                                     {/* Kolom 1 */}
                                     <div>
                                         <div className="text-[#63817E] font-semibold mb-3">Pendidikan Formal</div>
-                                        <a href="/pendidikan/tk" className="block py-2 hover:text-[#63817E]">TK Al-Khusyu’</a>
-                                        <a href="/pendidikan/madrasah" className="block py-2 hover:text-[#63817E]">MI Al-Khusyu’</a>
-                                        <a href="/pendidikan/smp" className="block py-2 hover:text-[#63817E]">SMP Al-Khusyu’</a>
-                                        <a href="/pendidikan/smk" className="block py-2 hover:text-[#63817E]">SMK Al-Khusyu’</a>
+                                        <Link to="/pendidikan/tk" className="block py-2 hover:text-[#63817E]" onClick={() => setEduOpen(false)}>TK Al-Khusyu'</Link>
+                                        <Link to="/pendidikan/madrasah" className="block py-2 hover:text-[#63817E]" onClick={() => setEduOpen(false)}>MI Al-Khusyu'</Link>
+                                        <Link to="/pendidikan/smp" className="block py-2 hover:text-[#63817E]" onClick={() => setEduOpen(false)}>SMP Al-Khusyu'</Link>
+                                        <Link to="/pendidikan/smk" className="block py-2 hover:text-[#63817E]" onClick={() => setEduOpen(false)}>SMK Al-Khusyu'</Link>
                                     </div>
 
                                     {/* Kolom 2 */}
                                     <div>
                                         <div className="text-[#63817E] font-semibold mb-3">Pesantren & Tahfidz</div>
-                                        <a href="/pendidikan/tahfidz" className="block py-2 hover:text-[#63817E]">Pondok Tahfidz BQ</a>
-                                        <a href="/pendidikan/pesantren" className="block py-2 hover:text-[#63817E]">Pondok Pesantren</a>
+                                        <Link to="/pendidikan/tahfidz" className="block py-2 hover:text-[#63817E]" onClick={() => setEduOpen(false)}>Pondok Tahfidz BQ</Link>
+                                        <Link to="/pendidikan/pesantren" className="block py-2 hover:text-[#63817E]" onClick={() => setEduOpen(false)}>Pondok Pesantren</Link>
                                     </div>
 
                                     {/* Kolom 3 */}
                                     <div>
                                         <div className="text-[#63817E] font-semibold mb-3">Pesantren & Tahfidz</div>
-                                        <a href="/pendidikan/diniyah" className="block py-2 hover:text-[#63817E]">Diniyah Al-Khusyu’</a>
-                                        <a href="/pendidikan/tpq" className="block py-2 hover:text-[#63817E]">TPQ Al-Khusyu’</a>
-                                        <a href="/pendidikan/bq" className="block py-2 hover:text-[#63817E]">BQ Kids Al-Khusyu’</a>
-                                        <a href="/pendidikan/sanggar" className="block py-2 hover:text-[#63817E]">Sanggar Al-Qur’an Al-Khusyu’</a>
+                                        <Link to="/pendidikan/diniyah" className="block py-2 hover:text-[#63817E]" onClick={() => setEduOpen(false)}>Diniyah Al-Khusyu'</Link>
+                                        <Link to="/pendidikan/tpq" className="block py-2 hover:text-[#63817E]" onClick={() => setEduOpen(false)}>TPQ Al-Khusyu'</Link>
+                                        <Link to="/pendidikan/bq" className="block py-2 hover:text-[#63817E]" onClick={() => setEduOpen(false)}>BQ Kids Al-Khusyu'</Link>
+                                        <Link to="/pendidikan/sanggar" className="block py-2 hover:text-[#63817E]" onClick={() => setEduOpen(false)}>Sanggar Al-Qur'an Al-Khusyu'</Link>
                                     </div>
 
                                     {/* Kolom 4 */}
                                     <div>
                                         <div className="text-[#63817E] font-semibold mb-3">Lembaga Sosial</div>
-                                        <a href="/pendidikan/lksa" className="block py-2 hover:text-[#63817E]">LKSA Al-Khusyu’</a>
+                                        <Link to="/pendidikan/lksa" className="block py-2 hover:text-[#63817E]" onClick={() => setEduOpen(false)}>LKSA Al-Khusyu'</Link>
                                     </div>
                                 </div>
 
@@ -115,9 +107,9 @@ export default function Navbar() {
                         )}
                     </div>
 
-                    <a className={`${isActive("/kegiatan") ? "text-[#FBFED0]" : ""} hover:underline whitespace-nowrap`} href="/kegiatan">Kegiatan</a>
-                    <a className={`${isActive("/program") ? "text-[#FBFED0]" : ""} hover:underline whitespace-nowrap`} href="/program">Program</a>
-                    <a className={`${isActive("/prestasi") ? "text-[#FBFED0]" : ""} hover:underline whitespace-nowrap`} href="/prestasi">Prestasi & Karya</a>
+                    <Link className={`${isActive("/kegiatan") ? "text-[#FBFED0]" : ""} hover:underline whitespace-nowrap`} to="/kegiatan">Kegiatan</Link>
+                    <Link className={`${isActive("/program") ? "text-[#FBFED0]" : ""} hover:underline whitespace-nowrap`} to="/program">Program</Link>
+                    <Link className={`${isActive("/prestasi") ? "text-[#FBFED0]" : ""} hover:underline whitespace-nowrap`} to="/prestasi">Prestasi & Karya</Link>
                 </nav>
             </div>
 
@@ -130,7 +122,7 @@ export default function Navbar() {
             {/* Mobile menu overlay */}
             {mobileMenuOpen && (
                 <div className="md:hidden fixed inset-0 z-50 bg-black bg-opacity-50">
-                    <div className="absolute right-0 top-0 h-full w-full sm:w-80 sm:max-w-full bg-white shadow-xl">
+                    <div className="absolute right-0 top-0 h-full w-full sm:w-80 sm:max-w-full bg-white shadow-xl overflow-y-auto">
                         <div className="flex items-center justify-between p-4 border-b">
                             <img src="/image/navbar-logo.png" alt="Logo" className="h-8" />
                             <button
@@ -142,22 +134,24 @@ export default function Navbar() {
                         </div>
 
                         <nav className="p-4 space-y-4">
-                            <a
+                            <Link
                                 className={`block py-3 px-4 rounded-lg font-semibold transition-colors ${
                                     isActive("/") ? "bg-[#63817E] text-white" : "text-gray-700 hover:bg-gray-100"
                                 }`}
-                                href="/"
+                                to="/"
+                                onClick={() => setMobileMenuOpen(false)}
                             >
                                 Beranda
-                            </a>
-                            <a
+                            </Link>
+                            <Link
                                 className={`block py-3 px-4 rounded-lg font-semibold transition-colors ${
                                     isActive("/tentang") ? "bg-[#63817E] text-white" : "text-gray-700 hover:bg-gray-100"
                                 }`}
-                                href="/tentang"
+                                to="/tentang"
+                                onClick={() => setMobileMenuOpen(false)}
                             >
                                 Tentang
-                            </a>
+                            </Link>
 
                             {/* Mobile Education dropdown */}
                             <div>
@@ -174,49 +168,52 @@ export default function Navbar() {
                                 {eduOpen && (
                                     <div className="mt-2 pl-4 space-y-2">
                                         <div className="text-sm font-medium text-[#63817E] mb-2">Pendidikan Formal</div>
-                                        <a href="/pendidikan/tk" className="block py-2 pl-4 text-gray-600 hover:text-[#63817E] hover:bg-gray-50 rounded">TK Al-Khusyu'</a>
-                                        <a href="/pendidikan/madrasah" className="block py-2 pl-4 text-gray-600 hover:text-[#63817E] hover:bg-gray-50 rounded">MI Al-Khusyu'</a>
-                                        <a href="/pendidikan/smp" className="block py-2 pl-4 text-gray-600 hover:text-[#63817E] hover:bg-gray-50 rounded">SMP Al-Khusyu'</a>
-                                        <a href="/pendidikan/smk" className="block py-2 pl-4 text-gray-600 hover:text-[#63817E] hover:bg-gray-50 rounded">SMK Al-Khusyu'</a>
+                                        <Link to="/pendidikan/tk" className="block py-2 pl-4 text-gray-600 hover:text-[#63817E] hover:bg-gray-50 rounded">TK Al-Khusyu'</Link>
+                                        <Link to="/pendidikan/madrasah" className="block py-2 pl-4 text-gray-600 hover:text-[#63817E] hover:bg-gray-50 rounded">MI Al-Khusyu'</Link>
+                                        <Link to="/pendidikan/smp" className="block py-2 pl-4 text-gray-600 hover:text-[#63817E] hover:bg-gray-50 rounded">SMP Al-Khusyu'</Link>
+                                        <Link to="/pendidikan/smk" className="block py-2 pl-4 text-gray-600 hover:text-[#63817E] hover:bg-gray-50 rounded">SMK Al-Khusyu'</Link>
 
                                         <div className="text-sm font-medium text-[#63817E] mb-2 mt-4">Pesantren & Tahfidz</div>
-                                        <a href="/pendidikan/tahfidz" className="block py-2 pl-4 text-gray-600 hover:text-[#63817E] hover:bg-gray-50 rounded">Pondok Tahfidz BQ</a>
-                                        <a href="/pendidikan/pesantren" className="block py-2 pl-4 text-gray-600 hover:text-[#63817E] hover:bg-gray-50 rounded">Pondok Pesantren</a>
-                                        <a href="/pendidikan/diniyah" className="block py-2 pl-4 text-gray-600 hover:text-[#63817E] hover:bg-gray-50 rounded">Diniyah Al-Khusyu'</a>
-                                        <a href="/pendidikan/tpq" className="block py-2 pl-4 text-gray-600 hover:text-[#63817E] hover:bg-gray-50 rounded">TPQ Al-Khusyu'</a>
-                                        <a href="/pendidikan/bq" className="block py-2 pl-4 text-gray-600 hover:text-[#63817E] hover:bg-gray-50 rounded">BQ Kids Al-Khusyu'</a>
-                                        <a href="/pendidikan/sanggar" className="block py-2 pl-4 text-gray-600 hover:text-[#63817E] hover:bg-gray-50 rounded">Sanggar Al-Qur'an Al-Khusyu'</a>
+                                        <Link to="/pendidikan/tahfidz" className="block py-2 pl-4 text-gray-600 hover:text-[#63817E] hover:bg-gray-50 rounded">Pondok Tahfidz BQ</Link>
+                                        <Link to="/pendidikan/pesantren" className="block py-2 pl-4 text-gray-600 hover:text-[#63817E] hover:bg-gray-50 rounded">Pondok Pesantren</Link>
+                                        <Link to="/pendidikan/diniyah" className="block py-2 pl-4 text-gray-600 hover:text-[#63817E] hover:bg-gray-50 rounded">Diniyah Al-Khusyu'</Link>
+                                        <Link to="/pendidikan/tpq" className="block py-2 pl-4 text-gray-600 hover:text-[#63817E] hover:bg-gray-50 rounded">TPQ Al-Khusyu'</Link>
+                                        <Link to="/pendidikan/bq" className="block py-2 pl-4 text-gray-600 hover:text-[#63817E] hover:bg-gray-50 rounded">BQ Kids Al-Khusyu'</Link>
+                                        <Link to="/pendidikan/sanggar" className="block py-2 pl-4 text-gray-600 hover:text-[#63817E] hover:bg-gray-50 rounded">Sanggar Al-Qur'an Al-Khusyu'</Link>
 
                                         <div className="text-sm font-medium text-[#63817E] mb-2 mt-4">Lembaga Sosial</div>
-                                        <a href="/pendidikan/lksa" className="block py-2 pl-4 text-gray-600 hover:text-[#63817E] hover:bg-gray-50 rounded">LKSA Al-Khusyu'</a>
+                                        <Link to="/pendidikan/lksa" className="block py-2 pl-4 text-gray-600 hover:text-[#63817E] hover:bg-gray-50 rounded">LKSA Al-Khusyu'</Link>
                                     </div>
                                 )}
                             </div>
 
-                            <a
+                            <Link
                                 className={`block py-3 px-4 rounded-lg font-semibold transition-colors ${
                                     isActive("/kegiatan") ? "bg-[#63817E] text-white" : "text-gray-700 hover:bg-gray-100"
                                 }`}
-                                href="/kegiatan"
+                                to="/kegiatan"
+                                onClick={() => setMobileMenuOpen(false)}
                             >
                                 Kegiatan
-                            </a>
-                            <a
+                            </Link>
+                            <Link
                                 className={`block py-3 px-4 rounded-lg font-semibold transition-colors ${
                                     isActive("/program") ? "bg-[#63817E] text-white" : "text-gray-700 hover:bg-gray-100"
                                 }`}
-                                href="/program"
+                                to="/program"
+                                onClick={() => setMobileMenuOpen(false)}
                             >
                                 Program
-                            </a>
-                            <a
+                            </Link>
+                            <Link
                                 className={`block py-3 px-4 rounded-lg font-semibold transition-colors ${
                                     isActive("/prestasi") ? "bg-[#63817E] text-white" : "text-gray-700 hover:bg-gray-100"
                                 }`}
-                                href="/prestasi"
+                                to="/prestasi"
+                                onClick={() => setMobileMenuOpen(false)}
                             >
                                 Prestasi & Karya
-                            </a>
+                            </Link>
                         </nav>
 
                         <div className="absolute bottom-0 left-0 right-0 p-4 bg-gray-50 border-t">

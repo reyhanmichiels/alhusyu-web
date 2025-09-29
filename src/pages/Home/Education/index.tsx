@@ -93,7 +93,7 @@ export function Education() {
                         <span className="col-start-1 row-start-2 text-2xl md:text-4xl lg:text-5xl xl:text-[76px]">Capaian</span>
                     </div>
                     <div className="text-[#63817E] font-manrope">
-                        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center h-full gap-4 md:gap-8">
+                        <div className="grid grid-cols-2 md:grid-cols-[1fr_auto_1fr] items-center h-full gap-4 md:gap-8">
                             <div className="text-center">
                                 <div className="font-semibold text-4xl md:text-6xl lg:text-7xl xl:text-[96px] leading-[0.9]">21+</div>
                                 <div className="text-lg md:text-xl lg:text-2xl xl:text-[28px] mt-1">Prestasi</div>
